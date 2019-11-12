@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="one.css">
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>SQL Documentation</header>
+      <ul>
+        <a class="nav-link" href="#Introduction_to_SQL" rel="internal"><li>Introduction to SQL</li></a>
+        <a class="nav-link" href="#What_Can_SQL_do" rel="internal"><li>What Can SQL do?</li></a>
+        <a class="nav-link" href="#RDBMS" rel="internal"><li>RDBMS</li></a>
+        <a class="nav-link" href="#SQL_Statements" rel="internal"><li>SQL Statements</li></a>
+        <a class="nav-link" href="#The_Most_Important_SQL_Commands" rel="internal"><li>The Most Important SQL Commands</li></a>
+        <a class="nav-link" href="#SQL_Stored_Procedures" rel="internal"><li>SQL Stored Procedures</li></a>
+        <a class="nav-link" href="#SQL_Comments" rel="internal"><li>SQL Comments</li></a>
+        <a class="nav-link" href="#Reference" rel="internal"><li>Reference</li></a>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <section class="main-section" id="Introduction_to_SQL">
+        <header>Introduction to SQL</header>
+        <article>
+            <p>SQL is a standard language for storing, manipulating and retrieving data in databases.</p>
+            <p>What is SQL</p>
+            <li>SQL stands for Structured Query Language.</li>  
+            <li>SQL lets you access and manipulate databases</li>
+            <li>SQL became a standard of the American National Standards Institute (ANSI) in 1986, and of the International Organization for Standardization (ISO) in 1987</li>
+          </article>
+        </section>
+      <section class="main-section" id="What_Can_SQL_do?">
+        <header>What Can SQL do?</header>
+        <article>
+      
+            <p>SQL supports major commands such as SELECT, UPDATE, DELETE, INSERT, WHERE for data manupilation</p>
+            <li>SQL can execute queries against a database.</li>
+            <li>SQL can retrieve data from a database</li>
+            <li>SQL can insert records,update records and delete records in a database</li>
+            <li>SQL can create new databases and new tables in a database</li>
+            <li>SQL can create stored procedures in a database</li>
+
+          </article>         
+        </section>
+      <section class="main-section" id="RDBMS">
+        <header>RDBMS</header>
+        <article>
+        <p>RDBMS stands for Relational Database Management System.</p>
+        <p>RDBMS is the basis for SQL, and for all modern database systems such as MS SQL Server, IBM DB2, Oracle, MySQL, and Microsoft Access.</p>
+            <p>The data in RDBMS is stored in database objects called tables. A table is a collection of related data entries and it consists of columns and rows.you can select elements from a table using</p>
+            <code>SELECT * FROM TABLE_NAME</code>    
+        </article>
+        </section>
+      <section class="main-section" id="SQL_Statements">
+        <header>SQL Statements</header>
+        <article>
+            <p>Most of the actions you need to perform on a database are done with SQL statements.</p>
+            <p>Keep in Mind That...</p>
+            <li>SQL keywords are NOT case sensitive: select is the same as SELECT</li>
+            <p>The following statement deletes all members from the "customers" table;</p>
+    <code>
+    DELETE FROM Customers;
+    </code>
+        </article>
+        </section>
+      <section class="main-section" id="The_Most_Important_SQL_Commands">
+        <header>The Most Important SQL Commands</header>
+          <li>SELECT - extracts data from a database</li>
+          <li><strong>UPDATE</strong> - updates data in a database. For example; </li>
+          <code> UPDATE table_name
+              SET column1 = value1, column2 = value2, ...
+              WHERE condition;</code>
+          <li><strong>DELETE</strong> - deletes data from a database</li>
+          <li><strong>INSERT INTO</strong> - inserts new data into a database. For example:</li>
+          <code>
+          INSERT INTO table_name (column1, column2, column3, ...)
+          VALUES (value1, value2, value3, ...);
+          </code>
+          <li><strong>CREATE DATABASE</strong> - creates a new database</li>
+          <li><strong>ALTER DATABASE</strong> - modifies a database</li>
+          <li><strong>CREATE TABLE</strong> - creates a new table</li>
+          <li><strong>ALTER TABLE</strong> - modifies a table</li>
+          <li><strong>DROP TABLE</strong> - deletes a table</li>
+          <li><strong>CREATE INDEX</strong> - creates an index (search key)</li>
+          <li><strong>DROP INDEX</strong> - deletes an index</li>
+          
+        </section>
+      <section class="main-section" id="SQL_Stored_Procedures">
+        <header>SQL Stored Procedures</header>
+        <article>
+            <p>A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.</p>
+            <p>So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it</p>
+            <p>You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed.</p>
+            <li><strong>Stored Procedure Syntax</strong></li>
+            <code>
+            CREATE PROCEDURE procedure_name
+                AS
+                sql_statement
+                GO;
+            </code>
+            <li><strong>Execute a Stored Procedure</strong></li>
+            <code>EXEC procedure_name;</code>
+            <p><strong>Stored Procedure With One Parameter</strong></p>
+            <li>The following SQL statement creates a stored procedure that selects Customers from a particular City from the "Customers" table:</li>
+            <code>
+            CREATE PROCEDURE SelectAllCustomers @City nvarchar(30)
+                AS
+                SELECT * FROM Customers WHERE City = @City
+                GO;
+            </code>
+            <p><strong>Stored Procedure With Multiple Parameters</strong></p>
+            <li>The following SQL statement creates a stored procedure that selects Customers from a particular City with a particular PostalCode from the "Customers" table:</li>
+            <code>CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode nvarchar(10)
+                AS
+                SELECT * FROM Customers WHERE City = @City AND PostalCode = @PostalCode
+                GO;</code>
+            
+        </article>
+        </section>
+   
+      <section class="main-section" id="SQL_Comments">
+        <header>SQL Comments</header>
+        <article>
+            <p>Comments are used to explain sections of SQL statements, or to prevent execution of SQL statements.</p>
+            <li><strong>Single Line Comments</strong></li>
+            <p>Any text between -- and the end of the line will be ignored (will not be executed)</p>
+            <code>
+                --Select all:
+                SELECT * FROM Customers;
+            </code>
+            <li><strong>Multi-line Comments</strong></li>
+            <p>Multi-line comments start with /* and end with */.</p>
+            <p>Any text between /* and */ will be ignored.</p>
+            <code>
+            /*Select all the columns
+            of all the records
+            in the Customers table:*/
+            SELECT * FROM Customers;
+            </code>
+  
+        </article>
+        </section>
+
+      <section class="main-section" id="Reference">
+        <header>Reference</header>
+        <article>
+          <li>All the documentation in this page is taken from <a href="https://www.w3schools.com/sql" >W3SCHOOLS SQL TUTORIALS</a>
+        </article>
+        </section>
+    </main>
+<footer>Nakyembe Sarah</footer>
+  </body>
+    
+</html>
